@@ -20,4 +20,6 @@ fi
 sudo cp ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/
 
 
-
+Servicesファイルのダウンロードと配置
+curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix-agent.service
+#cp -i /usr/lib/systemd/system/zabbix-agent.service /etc/systemd/system
