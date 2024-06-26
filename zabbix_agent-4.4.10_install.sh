@@ -11,15 +11,16 @@ fi
 tar zxvf ./zabbix_agent-4.4.10-linux-3.0-amd64-static.tar.gz -C zabbix_agent-4.4.10
 
 # Agentの配置
-sudo cp -i ./zabbix_agent-4.4.10/sbin/zabbix_agentd /usr/sbin/
+sudo cp -ia ./zabbix_agent-4.4.10/sbin/zabbix_agentd /usr/sbin/
 
 # Confの配置
 if [ ! -d "/etc/zabbix" ]; then
   sudo mkdir -p "/etc/zabbix"
 fi
-sudo cp -i ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/
+sudo cp -ia ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/
 
 
 #Servicesファイルのダウンロードと配置
+echo "curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix-agent.service"
 curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix-agent.service
-cp -i /usr/lib/systemd/system/zabbix-agent.service /etc/systemd/system
+sudo cp -ia zabbix-agent.service /etc/systemd/system/
