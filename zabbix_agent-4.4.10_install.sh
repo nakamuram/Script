@@ -23,22 +23,25 @@ if [ ! -d "/etc/zabbix" ]; then
   sudo mkdir -p "/etc/zabbix"
 fi
 echo "sudo cp -ia ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/"
-#rootで起動可能とするおまじない
+#rootで起動可能するおまじない
 sed -i 's/^# PidFile=\/tmp\/zabbix_agentd.pid$/PidFile=\/run\/zabbix\/zabbix_agentd.pid/' ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf
 sed -i 's/^# AllowRoot=0/AllowRoot=1/' ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf
 sudo cp -ia ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/
 echo -e "\n\n"
 
-#Servicesファイルのダウンロードと配置
+# Servicesファイルのダウンロード
 echo "curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix-agent.service"
 curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix-agent.service
 echo -e "\n\n"
 
-#Servicesファイルの配置
+# Servicesファイルの配置
 echo "sudo cp -ia zabbix-agent.service /etc/systemd/system/"
 sudo cp -ia zabbix-agent.service /etc/systemd/system/
 echo -e "\n\n"
 
-# systemctl daemon-reload
-# systemctl restart zabbix-agent
+# デーモンのリロード
+sudo systemctl daemon-reload
+sudo systemctl restart zabbix-agent
 
+# 以下な感じだとステキかも
+# curl -O https://raw.githubusercontent.com/nakamuram/Script/main/zabbix_agent-4.4.10_install.sh && chmod +x ./zabbix_agent-4.4.10_install.sh && ./zabbix_agent-4.4.10_install.sh
