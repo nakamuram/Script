@@ -23,10 +23,10 @@ if [ ! -d "/etc/zabbix" ]; then
   sudo mkdir -p "/etc/zabbix"
 fi
 echo "sudo cp -ia ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/"
+#rootで起動可能とするおまじない
 sed -i 's/^# PidFile=\/tmp\/zabbix_agentd.pid$/PidFile=\/run\/zabbix\/zabbix_agentd.pid/' ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf
+sed -i 's/^# AllowRoot=0/AllowRoot=1/' ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf
 sudo cp -ia ./zabbix_agent-4.4.10/conf/zabbix_agentd.conf /etc/zabbix/
-
-
 echo -e "\n\n"
 
 #Servicesファイルのダウンロードと配置
