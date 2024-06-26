@@ -11,6 +11,7 @@ Restart=on-failure
 PIDFile=/run/zabbix/zabbix_agentd.pid
 KillMode=control-group
 ExecStart=/usr/sbin/zabbix_agentd -c $CONFFILE
+ExecStartPost=/bin/sleep 2
 ExecStop=/bin/kill -SIGTERM $MAINPID
 RestartSec=10s
 User=root

@@ -39,8 +39,11 @@ echo "sudo cp -ia zabbix-agent.service /etc/systemd/system/"
 sudo cp -ia zabbix-agent.service /etc/systemd/system/
 echo -e "\n\n"
 
-# デーモンのリロード
+# サービスを有効にする
+sudo systemctl enable zabbix-agent.service
+# デーモンのリロード（設定の再読み込み）
 sudo systemctl daemon-reload
+# サービスの再起動
 sudo systemctl restart zabbix-agent
 
 # 以下な感じだとステキかも
