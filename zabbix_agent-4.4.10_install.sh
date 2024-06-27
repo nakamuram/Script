@@ -34,12 +34,8 @@ echo -e "\n\n"
 
 echo "サービスを有効にする"
 sudo systemctl enable zabbix-agent.service
-echo -e "\n\n"
-
 echo "デーモンのリロード（設定の再読み込み）"
 sudo systemctl daemon-reload
-echo -e "\n\n"
-
 echo "サービスの再起動"
 sudo systemctl restart zabbix-agent
 echo -e "\n\n"
